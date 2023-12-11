@@ -5,12 +5,13 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimeField } from '@mui/x-date-pickers/DateTimeField';
 import Button from '@mui/material/Button';
 import { Grid, Paper } from '@mui/material';
-
+import dayjs from 'dayjs';
 const IrrigationControl = () => {
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
   const socket = new WebSocket('ws://localhost:3001'); //hanghayar el localhost port 3ala hasab el port fel backend 
-  
+  const fivePM = dayjs().set('hour', 17).startOf('hour');
+  const sixAM = dayjs().set('hour', 6).startOf('hour');
   const handleStartInputChange = (event) => {
     setStartTime(event.target.value);
   };
@@ -54,6 +55,8 @@ const IrrigationControl = () => {
                 disablePast
                 onChange={setStartTime}
                 required
+                minTime={sixAM}
+                maxTime={fivePM} 
                 />
             </Grid>
             <Grid item xs={6}>
@@ -63,7 +66,10 @@ const IrrigationControl = () => {
                 value={endTime}
                 disablePast
                 onChange={setEndTime}
-                required 
+                required
+                minTime={sixAM}
+                maxTime={fivePM}
+                helperText="Please note that irrigation is only allowed until 5 PM for optimal plant health." 
                 />
             </Grid>
         </LocalizationProvider>
