@@ -8,12 +8,21 @@ import Button from '@mui/material/Button';
 import NavBar from './NavBar'
 import { Grid, Paper } from '@mui/material';
 import IrrigationControl from './IrrigationControl';
+import {Route ,BrowserRouter as Router, Routes  } from 'react-router-dom';
+import SoilMoisture from './SoilMoisture';
 function App() {
 
   return (
     <div>
       <NavBar/>
-      <IrrigationControl/> 
+    <Router>
+      <Routes>
+        <Route path="/" element={<IrrigationControl/>} />
+        <Route path="/SoilMoisture" element={<SoilMoisture/>}/>
+      </Routes>
+    
+
+    </Router>
     </div>
   )
  }

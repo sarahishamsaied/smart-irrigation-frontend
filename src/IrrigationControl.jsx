@@ -20,7 +20,6 @@ const IrrigationControl = () => {
   };
   
   const handleSaveClick = () => {
-    // Send start and end date-time to the backend
     if (!startTime || !endTime) {
         alert('Please select both start and end date-times.');
         return;

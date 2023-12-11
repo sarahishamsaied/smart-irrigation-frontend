@@ -6,15 +6,20 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import GrassOutlinedIcon from '@mui/icons-material/GrassOutlined';
+ import { NavLink, useNavigate } from "react-router-dom";
+import { Link } from '@mui/material';
 export default function NavBar() {
+
+  //  const navigate = useNavigate();
+  //  const navigateSoilMoisture = () => {
+  //   let path="/SoilMoisture";
+  //   navigate(path);
+  //  }
   return (
     <Box sx={{ flexGrow: 1 }}>
         <AppBar position="fixed"  style={{ width: '100%', backgroundColor: 'green'}}>
         <Toolbar>
          <GrassOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          {/* <Typography sx={{fontSize:15,fontWeight:'bold'}}  >
-            Smart Irrigation System
-          </Typography> */}
           <Typography
             variant="h6"
             sx={{
@@ -30,7 +35,7 @@ export default function NavBar() {
           </Typography>
           
           <Button color="inherit"  >Schedule</Button>
-          <Button color="inherit" >Soil Moisture</Button>
+          <Button color="inherit"  component={Link} to="/SoilMoisture" >Soil Moisture</Button>
           
         </Toolbar>
       </AppBar>
