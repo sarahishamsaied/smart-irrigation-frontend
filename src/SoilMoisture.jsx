@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 const  SoilMoisture= () => {
     const [soilMoisture, setSoilMoisture] = useState("");
-    const[soilMoistureLevel,setAdjustSoilMoisture]=useState("");
+    const[soilMoistureLevel,setSoilMoistureLevel]=useState("");
 
     const handleSoilAdjust = () =>{
      
