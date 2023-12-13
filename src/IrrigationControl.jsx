@@ -4,7 +4,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimeField } from '@mui/x-date-pickers/DateTimeField';
 import Button from '@mui/material/Button';
-import { Grid, Paper } from '@mui/material';
+import { Grid,Typography, Paper } from '@mui/material';
 import dayjs from 'dayjs';
 const IrrigationControl = () => {
   const [startTime, setStartTime] = useState();
@@ -35,11 +35,15 @@ const IrrigationControl = () => {
     const timeRange = JSON.stringify({ startTime, endTime });
     socket.send(timeRange);
   };
+  const handleCancelClick = () => {
+    setStartTime(null);
+    setEndTime(null);
+  };
   return (
     <div>
-        <Grid container spacing={5}>
+        <Grid container padding={12} spacing={6}>
         <Grid item xs={12}>
-            <h2>Welcome to Our Smart Irrigation System</h2> 
+            <h2 style={{fontFamily: 'monospace', fontSize: '28px',}}>Welcome to Our Smart Irrigation System</h2> 
         </Grid>
         <Paper sx={{padding:7}}>" a cutting-edge solution designed to transform the way you manage and optimize your garden or agricultural watering needs. 
         Harnessing the power of technology, our system integrates seamlessly with your environment, utilizing data-driven insights to deliver precise and efficient irrigation. 
@@ -50,13 +54,19 @@ const IrrigationControl = () => {
             <Grid item xs={6}>
                 <DateTimeField 
                 label="Pick a Start Date and Time " 
-                slotProps= { { textField: { fullWidth: true } } }
+                slotProps={{ textField: { fullWidth: true } }}
                 value={startTime}
                 disablePast
-                onChange={setStartTime}
+                // onChange={setStartTime}
+                onChange={handleStartInputChange}
                 required
                 minTime={sixAM}
                 maxTime={fivePM} 
+                helperText={
+                  <div style={{ marginTop: '8px', fontStyle: 'italic' }}>
+                    Kindly note that the designated irrigation period begins at 6 AM. We recommend commencing irrigation after this time for optimal plant health. Please be aware that irrigation is permissible until 5 PM.
+                  </div>
+                }
                 />
             </Grid>
             <Grid item xs={6}>
@@ -65,11 +75,12 @@ const IrrigationControl = () => {
                 slotProps= { { textField: { fullWidth: true } } }
                 value={endTime}
                 disablePast
-                onChange={setEndTime}
+                // onChange={setEndTime}
+                onChange={handleEndInputChange}
                 required
                 minTime={sixAM}
                 maxTime={fivePM}
-                helperText="Please note that irrigation is only allowed until 5 PM for optimal plant health." 
+                //helperText="Please note that irrigation is only allowed until 5 PM for optimal plant health." 
                 />
             </Grid>
         </LocalizationProvider>
@@ -77,7 +88,7 @@ const IrrigationControl = () => {
             <Button variant="contained" style={{  backgroundColor: 'green'}} onClick={handleSaveClick} >Save</Button>
         </Grid>
         <Grid item xs={6}>
-            <Button variant="outlined" color="success">Cancel</Button>
+            <Button variant="outlined" color="success" onClick={handleCancelClick}>Cancel</Button>
         </Grid>
         </Grid>
     </div>
