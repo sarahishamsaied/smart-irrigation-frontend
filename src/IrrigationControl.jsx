@@ -57,8 +57,7 @@ const IrrigationControl = () => {
                 slotProps={{ textField: { fullWidth: true } }}
                 value={startTime}
                 disablePast
-                // onChange={setStartTime}
-                onChange={handleStartInputChange}
+                onChange={setStartTime}
                 required
                 minTime={sixAM}
                 maxTime={fivePM} 
@@ -75,8 +74,7 @@ const IrrigationControl = () => {
                 slotProps= { { textField: { fullWidth: true } } }
                 value={endTime}
                 disablePast
-                // onChange={setEndTime}
-                onChange={handleEndInputChange}
+                onChange={setEndTime}
                 required
                 minTime={sixAM}
                 maxTime={fivePM}
